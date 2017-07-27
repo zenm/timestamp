@@ -1,5 +1,5 @@
 var ut = require("unix-timestamp");
-var stringResponse  = "february%2020,1982";
+var stringResponse  = "february%20205,2321";
 var delimitter = /%20+|,+|-+/;
 var onlyNumbers = /\d+/;
 var fourDigit = /\b\d{4}\b/;
@@ -88,11 +88,11 @@ function parseNaturalDate(string) {
 /*
 parseNaturalDate("jan%201%201999");
 parseNaturalDate("jan-1-1999");
-parseNaturalDate("jan,1,1999");
-parseNaturalDate("february-20-1982");
+parseNaturalDate("jul,1,1999");
+parseNaturalDate("february-21-1999");
 parseNaturalDate("1%20100%201999"); // null
 parseNaturalDate("reb"); //null
-parseNaturalDate("february,20,1982");
+parseNaturalDate("february,23,2001");
 */
 
 
