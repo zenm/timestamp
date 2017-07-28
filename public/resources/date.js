@@ -1,5 +1,8 @@
 var ut = require("unix-timestamp");
-var stringResponse  = "february%20205,2321";
+// var stringResponse  = "february%20205,2321";
+
+// var exports = module.exports {};
+
 var delimitter = /%20+|,+|-+/;
 var onlyNumbers = /\d+/;
 var fourDigit = /\b\d{4}\b/;
@@ -13,7 +16,6 @@ function testPath(string) {
     return null;
   }
 }
-
 
 var monthToDigit = {
   jan : '1',
@@ -38,22 +40,6 @@ function convertMonth(stringMonth) {
   return false;
 }
 
-/*
---------testing  convertMonth
-convertMonth("12123"); // false
-convertMonth("Jan"); // 1
-convertMonth("February"); //2
- */
-
-
-
-
-/*
-testPath("01%2001-1999");
-testPath("01-01-1999");
-testPath("01 01 1999");
-testPath("Jan 1,1999");
- */
 
 function parseNaturalDate(string) {
   if (testPathResult == "human"){
@@ -85,17 +71,6 @@ function parseNaturalDate(string) {
   }
 }
 
-/*
-parseNaturalDate("jan%201%201999");
-parseNaturalDate("jan-1-1999");
-parseNaturalDate("jul,1,1999");
-parseNaturalDate("february-21-1999");
-parseNaturalDate("1%20100%201999"); // null
-parseNaturalDate("reb"); //null
-parseNaturalDate("february,23,2001");
-*/
-
-
 
 function Date (req) {
 
@@ -117,13 +92,3 @@ function doThese(string) {
   console.log(ut.fromDate(parseNaturalDate(string)));
 }
 doThese(stringResponse);
-// var unixDate = ut.fromDate();
-// console.log(unixDate);
-// code using npm unix-timestamp
-/*
-ut.round = true;
-var fullDate = ut.toDate(150112720).toString().trim();
-var readableDate = fullDate.slice(4, 15);
-var unixDate = ut.fromDate("2017-07-25");
-console.log(unixDate, readableDate);
-*/
