@@ -4,13 +4,11 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
-const date = require("./resources/date.js");
-
-// require the mainjs
+const date = require("./public/resources/date.js");
 
 var server = http.createServer(function(req, res) {
   if (req.url === "/") {
-    fs.readFile("./index.html", "UTF-8", function(err, html) {
+    fs.readFile("./views/index.html", "UTF-8", function(err, html) {
       res.writeHead(200, {"Content-Type": "text/html"});
       res.end(html);
     });
