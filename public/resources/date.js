@@ -5,28 +5,28 @@ const ut = require("./../resources/node_modules/unix-timestamp/lib/timestamp.js"
 
 var exports = module.exports = {};
 
-var delimitter = /%20+|,+|-+/;
-var onlyNumbers = /\d+/;
+var delimitter = /%20|,|-/g;
+var onlyNumbers = /^\d+$/;
 var fourDigit = /\b\d{4}\b/;
 var monthToDigit = {
-  jan : '1',
-  feb : '2',
-  mar : '3',
-  apr : '4',
-  may : '5',
-  jun : '6',
-  jul : '7',
-  aug : '8',
-  sep : '9',
+  jan : '01',
+  feb : '02',
+  mar : '03',
+  apr : '04',
+  may : '05',
+  jun : '06',
+  jul : '07',
+  aug : '08',
+  sep : '09',
   oct : '10',
   nov : '11',
   dec : '12'
 };
 
 function testPath (string) {
-  if ( delimitter.test(string) ) {
+  if ( delimitter.test(string) ) { // if any delimitter
     return "human";
-  } else if ( onlyNumbers.test(string) ) {
+  } else if ( onlyNumbers.test(string) ) { // if absence of not characters, OR only numbers
     return "unix";
   } else {
     return "invalid";
@@ -38,9 +38,66 @@ function convertMonth (stringMonth) {
   if (monthToDigit.hasOwnProperty(shortMonth)){
     return monthToDigit[shortMonth];
   }
-  return false;
+  return stringMonth;
 }
 
+function convertDay (stringDay) {
+  if (stringDay.length == 1) {
+    return "0" + stringDay;
+  } return stringDay;
+}
+
+function parseNaturalDate (string) {
+  var month, day, year;
+  var monthAsNum, dayAsNum;
+  var monthDayYearArray = [];
+  var monthDayYearString = "";
+  var delimittedString = string.replace(delimitter, " ");
+  delimittedString = delimittedString.trim();
+
+  for (var j = 0; j < delimittedString.length; j++) {
+    if (delimittedString[j] == " " &&
+        delimittedString[j - 1] != " "){ // bc we want to skip over consecutive delimmitters
+      monthDayYearArray.push(monthDayYearString);
+      monthDayYearString = "";
+    } else if (delimittedString[j] != " ") {
+      monthDayYearString += delimittedString[j];
+    }
+  }
+  monthDayYearArray.push(monthDayYearString);
+
+  if (monthDayYearArray[0] && monthDayYearArray[1] && monthDayYearArray[2]){
+    month = convertMonth(monthDayYearArray[0]);
+    day = convertDay(monthDayYearArray[1]);
+    year = monthDayYearArray[2];
+  } else {
+    return "invalid";
+  }
+
+  if (onlyNumbers.test(month) && onlyNumbers.test(day) && onlyNumbers.test(year)){
+    if (month.length == 1){
+      month = "0" + month;
+    }
+  } else {
+    return "invalid";
+  }
+
+  monthAsNum = parseFloat(month);
+  dayAsNum = parseFloat(day);
+
+  if( monthAsNum >= 1 && monthAsNum <= 12 &&
+    dayAsNum >= 1 && dayAsNum <= 31 &&
+    fourDigit.test(year) ) {
+      return `${year}-${month}-${day}`;
+  } else {
+    return "invalid";
+  }
+}
+parseNaturalDate("---1,---1,,,,1123123----");
+
+
+
+// old function
 function parseNaturalDate (string) {
   var month;
   var day;
