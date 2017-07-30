@@ -93,37 +93,6 @@ function parseNaturalDate (string) {
     return "invalid";
   }
 }
-parseNaturalDate("---1,---1,,,,1123123----");
-
-
-
-// old function
-function parseNaturalDate (string) {
-  var month;
-  var day;
-  var year;
-  var monthAsNum;
-  var dayAsNum;
-  var str = string;
-  var result = str.split(delimitter, 3);
-  month = result[0];
-  day = result[1];
-  year = result[2];
-
-  if(!onlyNumbers.test(month)) {
-    month = convertMonth(month);
-  }
-
-  monthAsNum = parseFloat(month);
-  dayAsNum = parseFloat(day);
-  if (month === false){
-    return 'invalid';
-  } else if( monthAsNum <= 12 &&
-      dayAsNum <= 31   &&
-      fourDigit.test(year) ) {
-        return `${year}-${month}-${day}`;
-  } return "invalid";
-}
 
 exports.getDate = function(stringURL) {
   var testPathResult = testPath(stringURL);
