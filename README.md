@@ -18,14 +18,14 @@ Enter a date in the URL and you'll get the [**unix time**](https://en.wikipedia.
 In the URL, if you enter a human readable date
 `/January 1,2017` or `1 1 2017` or `1,1,2017` you'll see
 
->```
+```
 1%201%202017
 { unix: 1483228800, date: 2017-1-1 };
 ```
 
 In the URL, if you enter a UNIX date
 `/1234567890` you'll see
->```
+```
 1234567890
 { unix: 1234567890, date: 2009-02-13 };
 ```
