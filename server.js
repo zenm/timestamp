@@ -28,7 +28,4 @@ var server = http.createServer(function(req, res) {
   }
 }).listen(3000);
 
-
-// console.log("Server listening on port 3000");
-console.log(date.getDate("1234567890"));
-console.log(date.getDate("january%2020,2002"));
+console.log("Server listening on port 3000");
