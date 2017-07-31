@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Timestamp microservice</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../public/resources/styles/reset.css">
     <link rel="stylesheet" href="../public/resources/styles/master.css">
   </head>
@@ -11,17 +12,26 @@
       <div class="user-stories">
         <h1>Timestamp microservice</h1>
         <h2>User stories</h2>
-        <p></p>
-        <p></p>
-        <p></p>
+        <p>I can pass a string as a parameter, and it will check to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016).</p>
+        <p>If it does, it returns both the Unix timestamp and the natural language form of that date.</p>
+        <p>If it does not contain a date or Unix timestamp, it returns null for those properties.</p>
       </div>
       <div class="examples">
-        <h2>Example usage:</h2>
-          <span>In the URL type a date or a UNIX date</span>
-          <span>/January 1, 2017</span>
-          <span>/1450137600</span>
-        <h2>Example output:</h2>
-          <span>{ "unix": 1450137600, "natural": "December 15, 2015" }</span>
+        <h2>Example usage</h2>
+          <p>In the URL, type a date (in <span class="output">Month Day Year</span> format) or a <span class="output">UNIX</span> date</p>
+          <p><span class="output">/July 30, 2017</span></p>
+          <p><span class="output">/1501372800</span></p>
+        <h2>Example output</h2>
+          <p><span class="output">{ unix: 1501372800, date: 2017-07-30 };</span></p>
+      </div>
+      <div class="credtis">
+        <h2>Learn more</h2>
+        <div class="links">
+          <a href="https://www.linkedin.com/in/lino-jimenez-jr-4989b23/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+          <a href="https://github.com/zenm" target="_blank"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
+          <a href="https://www.freecodecamp.com/linolearnstocode" target="_blank"><i class="fa fa-free-code-camp" aria-hidden="true"></i></a>
+          <p><span>A freeCodeCamp project by Lino</span></p>
+        </div>
       </div>
     </div>
   </body>
